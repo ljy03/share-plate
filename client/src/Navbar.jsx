@@ -5,8 +5,10 @@ import "./Navbar.css"
 import { MyContextProvider } from "./App";
 import axios from "axios";
 import { backendUrl } from "./App";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const { user, setUser } = useContext(MyContextProvider)
     const handleAuth = async () => {
         try {
@@ -51,13 +53,19 @@ const Navbar = () => {
             .catch((err) => console.log(err));
     }
 
+    const navigateToInventory = () => {
+        navigate("/Inventory");
+    }
+
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <ul style={{ display: "flex" }}>
-                <li>Home</li>
+                <li onClick={() => {
+                    navigate("/");
+                }}>Home</li>
                 {user && (
                     <ul style={{ display: "flex" }}>
-                        <li>Inventory</li>
+                        <li onClick={navigateToInventory}>Inventory</li>
                         <li>Add Item</li>
                         <li>Chat</li>
                     </ul>
