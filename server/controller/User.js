@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const User = require('../models/user');
+const FoodItem = require('../models/FoodItem');
 
 
 exports.CreateUser = async (req, res) => {
@@ -22,5 +23,16 @@ exports.CreateUser = async (req, res) => {
             // Handle other types of errors
             res.status(500).json({ error: "Internal Server Error" });
         }
+    }
+}
+
+exports.updateUserInventory = async(req, res) => {
+    const {email} = req.body;
+    try {
+        const foodItems = await FoodItem.find({userEmail: email});
+        const updateUserInventory = await User.findOneAndUpdate({email: email}, {inventory: foodItems});
+        res.status(200).json(updateUserInventory);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }
