@@ -1,44 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MarketCard from "./components/MarketCard";
 import Sidebar from "./components/Sidebar"
 import FoodCard from "./components/FoodCard";
+import axios from "axios";
+import { backendUrl } from "../App";
 
 const Market = () => {
     
-    const mockFoodItems = [
-        {
-            index: 1,
-            name: "Fresh Strawberries",
-            description: "Organically grown strawberries from local farms.",
-            image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
-            expiray_date:"04-17-2022",
-            inital_amount: 1,
-        },
-        {
-            index: 2,
-            name: "Fresh Strawberries",
-            description: "Organically grown strawberries from local farms.",
-            image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
-            expiray_date:"04-17-2022",
-            inital_amount: 1,
-        },
-        {
-            index: 3,
-            name: "Fresh Strawberries",
-            description: "Organically grown strawberries from local farms.",
-            image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
-            expiray_date:"04-17-2022",
-            inital_amount: 1,
-        },
-        {
-            index: 4,
-            name: "Fresh Strawberries",
-            description: "Organically grown strawberries from local farms.",
-            image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
-            expiray_date:"04-17-2022",
-            inital_amount: 1,
-        },
-    ];
+    // const mockFoodItems = [
+    //     {
+    //         index: 1,
+    //         name: "Fresh Strawberries",
+    //         description: "Organically grown strawberries from local farms.",
+    //         image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+    //         expiray_date:"04-17-2022",
+    //         inital_amount: 1,
+    //     },
+    //     {
+    //         index: 2,
+    //         name: "Fresh Strawberries",
+    //         description: "Organically grown strawberries from local farms.",
+    //         image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+    //         expiray_date:"04-17-2022",
+    //         inital_amount: 1,
+    //     },
+    //     {
+    //         index: 3,
+    //         name: "Fresh Strawberries",
+    //         description: "Organically grown strawberries from local farms.",
+    //         image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+    //         expiray_date:"04-17-2022",
+    //         inital_amount: 1,
+    //     },
+    //     {
+    //         index: 4,
+    //         name: "Fresh Strawberries",
+    //         description: "Organically grown strawberries from local farms.",
+    //         image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+    //         expiray_date:"04-17-2022",
+    //         inital_amount: 1,
+    //     },
+    // ];
+
+    const [mockFoodItems, setMockFoodItems] = useState([])
+
+    useEffect(() => {
+      axios.get(`${backendUrl}/user/getPublicInventory`)
+      .then(res => {
+        console.log(res.data)
+        setMockFoodItems(res.data)
+      })
+    }, [])
 
     return (
         <div style={{ display: 'flex' }}>

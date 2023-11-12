@@ -87,7 +87,7 @@ const Home = () => {
                         <label style={{ margin: "10px" }}>Type</label>
                         <select
                             style={{ padding: "5px 7px", borderRadius: "10px" }}
-                            defaultValue={"Free"}
+                            defaultValue={""}
                             onChange={(e) => setType(e.target.value)}
                         >
                             <option value="Free">Free</option>

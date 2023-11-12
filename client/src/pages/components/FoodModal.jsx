@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { backendUrl } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -29,6 +30,7 @@ const FoodModal = ({ id,open, handleClose, name, description, image, expiray_dat
 
     const setToTrade = () => setStatus(false);
     const setToFree = () => setStatus(true);
+    const navigate = useNavigate();
 
     return (
         <Modal
@@ -58,7 +60,7 @@ const FoodModal = ({ id,open, handleClose, name, description, image, expiray_dat
                         })
                         .then((res) => {
                             console.log(res);
-                            window.location.reload();
+                            navigate("/");
                         })
                     } catch(err) {
                         console.log(err);
@@ -80,7 +82,7 @@ const FoodModal = ({ id,open, handleClose, name, description, image, expiray_dat
                     })
                     .then((res) => {
                         console.log(res);
-                        window.location.reload();
+                        navigate("/");
                     })
                 }}  
                 disabled={!free} 
@@ -91,6 +93,9 @@ const FoodModal = ({ id,open, handleClose, name, description, image, expiray_dat
             }}>
             Set to Trade
             </Button>
+            <p onClick={() => {
+                navigate(`/Marketplace/chat/${id}`)
+            }}>Chat</p>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
                 {/* <Button onClick={handleDecrease} sx={{ width: '100px' }} >-</Button> */}
                 {/* <Typography>{amount}</Typography> */}
