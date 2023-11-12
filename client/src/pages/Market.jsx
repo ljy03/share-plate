@@ -1,7 +1,8 @@
 import React from "react";
 import FoodCard from "./components/FoodCard";
+import Sidebar from "./components/Sidebar"
 
-const List = () => {
+const Market = () => {
     
     const mockFoodItems = [
         {
@@ -39,15 +40,18 @@ const List = () => {
     ];
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Inventory</h1>
+        <div style={{ display: 'flex' }}>
+          <Sidebar />
+          <div style={{ marginLeft: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Market</h1>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '30px', width: '80%', maxWidth: '800px' }}>
-                {mockFoodItems.map((project, index) => (
-                    <FoodCard key={`${index}`} index={index} {...project} />
-                ))}
+              {mockFoodItems.map((project, index) => (
+                <FoodCard key={`${index}`} index={index} {...project} />
+              ))}
             </div>
+          </div>
         </div>
-    );
-}
+      );
+    };
 
-export default List;
+export default Market;

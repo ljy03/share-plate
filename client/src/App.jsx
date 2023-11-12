@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from './Home';
 import List from './pages/List';
+import Market from './pages/Market';
 import Navbar from './Navbar';
 
 export const MyContextProvider = createContext();
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path= "/List" element={<List />} />
+            <Route path= "/Market" element={<Market />} />
           </Routes>
         </BrowserRouter>
       </MyContextProvider.Provider>
