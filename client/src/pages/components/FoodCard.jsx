@@ -24,6 +24,7 @@ export default function FoodCard({
   const handleClose = () => setOpen(false);
 
   const [amount, setAmount] = useState(inital_amount);
+  const [Free, setStatus] = useState(false);
 
   return (
   <>
@@ -44,9 +45,19 @@ export default function FoodCard({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Free</Button>
-          <Button size="small">Trade</Button>
+        {Free === true ?(
+          <Typography variant="body2" color="green" free={false}>
+              Free
+          </Typography>
+        )
+          :
+        (
+          <Typography variant="body2" color="orange" free={true}>
+              Trade
+          </Typography>
+        )}
         </CardActions>
+        
 
         <Typography
             sx={{ position: 'absolute', bottom: 5, right: 5, backgroundColor: 'white', padding: '5px' }}
@@ -66,6 +77,8 @@ export default function FoodCard({
       expiray_date={expiray_date}
       amount={amount}
       setAmount={setAmount}
+      setStatus = {setStatus}
+      free = {Free}
     />
   </>
   );

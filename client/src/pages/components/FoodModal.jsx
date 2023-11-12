@@ -21,9 +21,12 @@ const style = {
     justifyContent: 'center' // Center content vertically
 };
 
-const FoodModal = ({ open, handleClose, name, description, image, expiray_date, amount, setAmount  }) => {
+const FoodModal = ({ open, handleClose, name, description, image, expiray_date, amount, setAmount, setStatus, free }) => {
     const handleIncrease = () => setAmount(amount + 1);
     const handleDecrease = () => amount > 0 && setAmount(amount - 1);
+
+    const setToTrade = () => setStatus(false);
+    const setToFree = () => setStatus(true);
 
     return (
         <Modal
@@ -43,6 +46,26 @@ const FoodModal = ({ open, handleClose, name, description, image, expiray_date, 
             <Typography id="modal-description" sx={{ mt: 2 }}>
             {`Expire Day:${expiray_date}`}
             </Typography>
+            <Button 
+                onClick={setToFree} 
+                disabled={free} 
+                style={{
+                    backgroundColor: !free ? '#4CAF50' : '#F0F0F0', // Green when active, grey when disabled
+                    color: !free ? 'white' : 'black',
+                    margin: '10px',
+            }}>
+            Set to Free
+            </Button>
+            <Button 
+                onClick={setToTrade} 
+                disabled={!free} 
+                style={{
+                    backgroundColor: free ? '#FF5722' : '#F0F0F0', // Orange when active, grey when disabled
+                    color: free ? 'white' : 'black',
+                    margin: '10px',
+            }}>
+            Set to Trade
+            </Button>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
                 <Button onClick={handleDecrease} sx={{ width: '100px' }} >-</Button>
                 <Typography>{amount}</Typography>
