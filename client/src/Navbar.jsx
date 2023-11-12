@@ -3,6 +3,8 @@ import { getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/
 import { auth, provider } from "./firebase";
 import "./Navbar.css"
 import { MyContextProvider } from "./App";
+import axios from "axios";
+import { backendUrl } from "./App";
 
 const Navbar = () => {
     const { user, setUser } = useContext(MyContextProvider)
@@ -12,6 +14,16 @@ const Navbar = () => {
             const idToken = await data.user.getIdToken();
             localStorage.setItem("token", idToken);
             console.log(data.user);
+            setUser(data.user);
+            await axios.post(backendUrl, {
+                name: data.user.displayName,
+                email: data.user.email,
+                photo: data.user.photoURL,
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
         } catch (err) {
             console.log(err);
         }
@@ -34,6 +46,7 @@ const Navbar = () => {
         signOut(auth)
             .then(() => {
                 localStorage.removeItem("token");
+                setUser(null);
             })
             .catch((err) => console.log(err));
     }
@@ -43,20 +56,22 @@ const Navbar = () => {
             <ul style={{ display: "flex" }}>
                 <li>Home</li>
                 {user && (
-                    <ul style={{display: "flex"}}>
-                    <li>Inventory</li>
-                    <li>Add Item</li>
-                    <li>Chat</li>
+                    <ul style={{ display: "flex" }}>
+                        <li>Inventory</li>
+                        <li>Add Item</li>
+                        <li>Chat</li>
                     </ul>
                 )}
             </ul>
             <ul>
                 {user ? (
-                    <li onClick={handleLogout}>Logout</li>
+                    <ul style={{display: "flex"}}>
+                        <li style={{display: "flex", alignItems: "center"}}><img style={{height:"30px", borderRadius: "50%", alignItems: "center"}} src={user.photoURL} /></li>
+                        <li style={{display: "flex", alignItems: "center"}} onClick={handleLogout}>Logout</li>
+                    </ul>
                 ) : (
                     <li onClick={handleAuth}>Login</li>
                 )}
-
             </ul>
         </div>
     );

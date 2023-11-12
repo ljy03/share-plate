@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.use('/api/user', require('./routes/UserRouter'));
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

@@ -9,6 +9,8 @@ import Navbar from './Navbar';
 
 export const MyContextProvider = createContext();
 
+export const backendUrl = "http://localhost:3001/api/user/create"
+
 function App() {
   const [user, setUser] = useState(null);
 
