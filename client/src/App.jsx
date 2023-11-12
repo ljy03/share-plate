@@ -5,15 +5,18 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './Home';
 import { useContext } from 'react';
+import Navbar from './Navbar';
 
 export const MyContextProvider = createContext();
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null);
+
   return (
     <>
-      <MyContextProvider.Provider value={{count, setCount}}>
+      <MyContextProvider.Provider value={{user, setUser}}>
         <BrowserRouter>
+        <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>
