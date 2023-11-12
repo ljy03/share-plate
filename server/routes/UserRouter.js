@@ -1,5 +1,5 @@
 const express = require('express');
-const { CreateUser, updateUserInventory, getUserInventory, getUserInventoryFoodItemAboutToExpire, updateFoodItemType } = require('../controller/User');
+const { CreateUser, updateUserInventory, getUserInventory, getUserInventoryFoodItemAboutToExpire, updateFoodItemType, getAllPublicFoodItem } = require('../controller/User');
 const { AddFoodItem } = require('../controller/FoodItem');
 const userRouter = express.Router();
 
@@ -9,5 +9,6 @@ userRouter.put('/updateInventory', updateUserInventory);
 userRouter.get('/getInventory', getUserInventory)
 userRouter.get('/getInventoryFoodItemAboutToExpire', getUserInventoryFoodItemAboutToExpire);
 userRouter.put('/updateFoodItemofInventory', updateFoodItemType);
+userRouter.get('/getPublicInventory', getAllPublicFoodItem);
 
 module.exports = userRouter;

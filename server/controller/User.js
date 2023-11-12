@@ -80,3 +80,12 @@ exports.updateFoodItemType = async(req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+exports.getAllPublicFoodItem = async(req, res) => {
+    try {
+        const foodItems = await FoodItem.find({type: "public"});
+        res.status(200).json(foodItems);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
