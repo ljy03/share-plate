@@ -7,15 +7,28 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import FoodModal from './FoodModal';
+import { useState } from 'react';
+
 export default function FoodCard({
   index,
   name,
   description,
   image,
+  expiray_date,
+  inital_amount,
 }) {
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [amount, setAmount] = useState(inital_amount);
+
   return (
-    <motion.div whileHover={{ scale: 0.95 }}>
-      <Card sx={{ maxWidth: 345 }}>
+  <>
+    <motion.div whileHover={{ scale: 0.95 }} onClick={handleOpen}>
+      <Card sx={{ maxWidth: 345, position: 'relative' }}>
         <CardMedia
           component="img"
           alt={name}
@@ -34,7 +47,26 @@ export default function FoodCard({
           <Button size="small">Free</Button>
           <Button size="small">Trade</Button>
         </CardActions>
+
+        <Typography
+            sx={{ position: 'absolute', bottom: 5, right: 5, backgroundColor: 'white', padding: '5px' }}
+        >
+            {`Amount: ${amount}`}
+        </Typography>
+
       </Card>
     </motion.div>
+
+    <FoodModal
+      open={open}
+      handleClose={handleClose}
+      name={name}
+      description={description}
+      image={image}
+      expiray_date={expiray_date}
+      amount={amount}
+      setAmount={setAmount}
+    />
+  </>
   );
 }

@@ -2,31 +2,39 @@ import React from "react";
 import FoodCard from "./components/FoodCard";
 
 const List = () => {
-    // Mock data for FoodCard
+    
     const mockFoodItems = [
         {
             index: 1,
             name: "Fresh Strawberries",
             description: "Organically grown strawberries from local farms.",
             image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+            expiray_date:"04-17-2022",
+            inital_amount: 1,
         },
         {
             index: 2,
             name: "Fresh Strawberries",
             description: "Organically grown strawberries from local farms.",
             image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+            expiray_date:"04-17-2022",
+            inital_amount: 1,
         },
         {
             index: 3,
             name: "Fresh Strawberries",
             description: "Organically grown strawberries from local farms.",
             image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+            expiray_date:"04-17-2022",
+            inital_amount: 1,
         },
         {
             index: 4,
             name: "Fresh Strawberries",
             description: "Organically grown strawberries from local farms.",
             image: "/src/assets/allec-gomes-xnRg3xDcNnE-unsplash.jpg", // Replace with an actual image path
+            expiray_date:"04-17-2022",
+            inital_amount: 1,
         },
     ];
 
