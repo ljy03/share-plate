@@ -3,13 +3,14 @@ const FoodItem = require('../models/FoodItem');
 const User = require('../models/user');
 
 exports.AddFoodItem = async (req, res) => {
-    const { name, quantity, expirtyDate, location, email, imageUri, type } = req.body;
+    const { name, quantity, expiry, location, email, imageUri, type } = req.body;
+    console.log(expiry);
 
     try {
         const newFoodItem = new FoodItem({
             name,
             quantity,
-            expirtyDate,
+            expiry,
             location,
             type,
             imageUri,

@@ -12,7 +12,7 @@ const foodItemSchema = new Schema({
     },
     expiry: {
         type: Date,
-        trim: true,
+        required: true,
     },
     location: {
         type: String,
@@ -20,6 +20,7 @@ const foodItemSchema = new Schema({
     },
     type: {
         type: String,
+        trim: true,
     },
     imageUri: {
         type: String,

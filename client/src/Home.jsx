@@ -43,7 +43,7 @@ const Home = () => {
             location,
             imageUri: url,
             email: user.email,
-            expiryDate: expiry
+            expiry
         })
         .then(async(res) => {
             await axios.put(`${backendUrl}/user//updateInventory`, {
@@ -51,6 +51,7 @@ const Home = () => {
             })
         })
         .catch((err) => console.log(err));
+        console.log(name, quantity, type, location, url, expiry);
     }
 
     return (
@@ -84,9 +85,13 @@ const Home = () => {
                     </div>
                     <div>
                         <label style={{ margin: "10px" }}>Type</label>
-                        <select style={{ padding: "5px 7px", borderRadius: "10px" }} defaultValue={"Free"}>
-                            <option onSelect={() => setType("Free")} value="Free">Free</option>
-                            <option onAbort={() => setType("Trade")} value="Trade">Trade</option>
+                        <select
+                            style={{ padding: "5px 7px", borderRadius: "10px" }}
+                            defaultValue={"Free"}
+                            onChange={(e) => setType(e.target.value)}
+                        >
+                            <option value="Free">Free</option>
+                            <option value="Trade">Trade</option>
                         </select>
                     </div>
                     <div>
