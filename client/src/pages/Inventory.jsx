@@ -4,7 +4,7 @@ import axios from "axios";
 import { backendUrl } from "../App";
 import { MyContextProvider } from "../App";
 
-const List = () => {
+const Inventory = () => {
     
     // const mockFoodItems = [
     //     {
@@ -60,7 +60,7 @@ const List = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>List</h1>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Inventory</h1>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '30px', width: '80%', maxWidth: '800px' }}>
                 {foodItem.map((project, index) => (
                     <FoodCard key={`${index}`} index={project._id} {...project} />
@@ -70,4 +70,4 @@ const List = () => {
     );
 }
 
-export default List;
+export default Inventory;
