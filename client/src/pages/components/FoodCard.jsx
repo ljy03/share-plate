@@ -11,20 +11,20 @@ import FoodModal from './FoodModal';
 import { useState } from 'react';
 
 export default function FoodCard({
-  index,
   name,
-  description,
-  image,
-  expiray_date,
-  inital_amount,
+  quantity,
+  imageUri,
+  expiry,
+  type,
+  _id
 }) {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [amount, setAmount] = useState(inital_amount);
-  const [Free, setStatus] = useState(false);
+  // const [amount, setAmount] = useState(inital_amount);
+  const [Free, setStatus] = useState(type === "Free" ? true : false);
 
   return (
   <>
@@ -34,15 +34,15 @@ export default function FoodCard({
           component="img"
           alt={name}
           height="140"
-          image={image}
+          image={imageUri}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          {/* <Typography variant="body2" color="text.secondary">
             {description}
-          </Typography>
+          </Typography> */}
         </CardContent>
         <CardActions>
         {Free === true ?(
@@ -62,21 +62,22 @@ export default function FoodCard({
         <Typography
             sx={{ position: 'absolute', bottom: 5, right: 5, backgroundColor: 'white', padding: '5px' }}
         >
-            {`Amount: ${amount}`}
+            {`Amount: ${quantity}`}
         </Typography>
 
       </Card>
     </motion.div>
 
     <FoodModal
+    id={_id}
       open={open}
       handleClose={handleClose}
       name={name}
-      description={description}
-      image={image}
-      expiray_date={expiray_date}
-      amount={amount}
-      setAmount={setAmount}
+      // description={description}
+      image={imageUri}
+      expiray_date={expiry}
+      amount={quantity}
+      // setAmount={setAmount}
       setStatus = {setStatus}
       free = {Free}
     />

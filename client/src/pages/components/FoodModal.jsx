@@ -3,6 +3,8 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import axios from 'axios';
+import { backendUrl } from '../../App';
 
 const style = {
     position: 'absolute',
@@ -21,9 +23,9 @@ const style = {
     justifyContent: 'center' // Center content vertically
 };
 
-const FoodModal = ({ open, handleClose, name, description, image, expiray_date, amount, setAmount, setStatus, free }) => {
-    const handleIncrease = () => setAmount(amount + 1);
-    const handleDecrease = () => amount > 0 && setAmount(amount - 1);
+const FoodModal = ({ id,open, handleClose, name, description, image, expiray_date, amount, setStatus, free }) => {
+    // const handleIncrease = () => setAmount(amount + 1);
+    // const handleDecrease = () => amount > 0 && setAmount(amount - 1);
 
     const setToTrade = () => setStatus(false);
     const setToFree = () => setStatus(true);
@@ -47,7 +49,21 @@ const FoodModal = ({ open, handleClose, name, description, image, expiray_date, 
             {`Expire Day:${expiray_date}`}
             </Typography>
             <Button 
-                onClick={setToFree} 
+                onClick={async() => {
+                    console.log(id);
+                    try {
+                        await axios.put(`${backendUrl}/user/updateFoodItemofInventory`, {
+                            id: id,
+                            type: free ? "Trade" : "Free",
+                        })
+                        .then((res) => {
+                            console.log(res);
+                            window.location.reload();
+                        })
+                    } catch(err) {
+                        console.log(err);
+                    }
+                }} 
                 disabled={free} 
                 style={{
                     backgroundColor: !free ? '#4CAF50' : '#F0F0F0', // Green when active, grey when disabled
@@ -57,7 +73,16 @@ const FoodModal = ({ open, handleClose, name, description, image, expiray_date, 
             Set to Free
             </Button>
             <Button 
-                onClick={setToTrade} 
+                onClick={async() => {
+                    await axios.put(`${backendUrl}/user/updateFoodItemofInventory`, {
+                        id: id,
+                        type: free ? "Trade" : "Free",
+                    })
+                    .then((res) => {
+                        console.log(res);
+                        window.location.reload();
+                    })
+                }}  
                 disabled={!free} 
                 style={{
                     backgroundColor: free ? '#FF5722' : '#F0F0F0', // Orange when active, grey when disabled
@@ -67,9 +92,9 @@ const FoodModal = ({ open, handleClose, name, description, image, expiray_date, 
             Set to Trade
             </Button>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
-                <Button onClick={handleDecrease} sx={{ width: '100px' }} >-</Button>
-                <Typography>{amount}</Typography>
-                <Button onClick={handleIncrease} sx={{ width: '100px' }} >+</Button>
+                {/* <Button onClick={handleDecrease} sx={{ width: '100px' }} >-</Button> */}
+                {/* <Typography>{amount}</Typography> */}
+                {/* <Button onClick={handleIncrease} sx={{ width: '100px' }} >+</Button> */}
             </div>
         </Box>
         </Modal>

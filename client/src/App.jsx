@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import List from './pages/List';
 import Navbar from './Navbar';
+import FoodAboutToExpirePage from './pages/ListOfFoodAboutToExpire';
 
 export const MyContextProvider = createContext();
 
@@ -19,7 +20,8 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path= "/List" element={<List />} />
+            <Route path= "/List" element={user ? <List /> : <Home />} />
+            <Route path='/expire' element={user ? <FoodAboutToExpirePage /> : <Home />} />
           </Routes>
         </BrowserRouter>
       </MyContextProvider.Provider>

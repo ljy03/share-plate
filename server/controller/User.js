@@ -42,7 +42,8 @@ exports.updateUserInventory = async(req, res) => {
 }
 
 exports.getUserInventory = async(req, res) => {
-    const {email} = req.body;
+    const {email} = req.headers;
+    console.log(email);
     try {
         const user = await User.findOne({email: email}).populate('inventory');
         const foodItems = user.inventory;
@@ -53,7 +54,7 @@ exports.getUserInventory = async(req, res) => {
 }
 
 exports.getUserInventoryFoodItemAboutToExpire = async(req, res) => {
-    const {email} = req.body;
+    const {email} = req.headers;
     try {
         const user = await User.findOne({email: email}).populate('inventory');
         const foodItems = user.inventory;
@@ -66,5 +67,16 @@ exports.getUserInventoryFoodItemAboutToExpire = async(req, res) => {
         res.status(200).json(foodItemsAboutToExpire);
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+exports.updateFoodItemType = async(req, res) => {
+    const {email, id, type} = req.body;
+    console.log(req.body);
+    try {
+        const updatedfood = await FoodItem.findOneAndUpdate({_id: id}, {type: type});
+        res.status(200).json(updatedfood);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 }
