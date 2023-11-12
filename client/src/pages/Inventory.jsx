@@ -3,7 +3,6 @@ import FoodCard from "./components/FoodCard";
 import axios from "axios";
 import { backendUrl } from "../App";
 import { MyContextProvider } from "../App";
-import OpenAI from "openai"
 
 const Inventory = () => {
 
@@ -27,7 +26,7 @@ const Inventory = () => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Inventory</h1>
-            <p onClick={generateRecipie}>generate</p>
+            {/* <p onClick={generateRecipie}>generate</p> */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '30px', width: '80%', maxWidth: '800px' }}>
                 {foodItem.length > 0 ?
                     (

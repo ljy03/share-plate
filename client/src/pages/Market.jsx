@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import MarketCard from "./components/MarketCard";
-import Sidebar from "./components/Sidebar"
 import FoodCard from "./components/FoodCard";
 import axios from "axios";
 import { backendUrl } from "../App";
@@ -53,18 +52,17 @@ const Market = () => {
     }, [])
 
     return (
-        <div style={{ display: 'flex' }}>
-          <Sidebar />
-          <div style={{ marginLeft: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Market</h1>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '30px', width: '80%', maxWidth: '800px' }}>
-              {mockFoodItems.map((project, index) => (
-                <FoodCard key={`${index}`} index={index} {...project} />
-              ))}
-            </div>
-          </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Market</h1>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '30px', width: '80%', maxWidth: '800px' }}>
+          {mockFoodItems.map((project, index) => (
+            <FoodCard key={`${index}`} index={index} {...project} />
+          ))}
         </div>
-      );
-    };
+      </div>
+    </div>
+  );
+};
 
 export default Market;
