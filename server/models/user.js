@@ -20,6 +20,14 @@ const userSchema = new Schema({
         type: String,
         trim: true,
     },
+    inventory: [{
+        type: Schema.Types.ObjectId,
+        ref: 'FoodItem',
+    }],
+    availableForPublic: {
+        type: Boolean,
+        default: false,
+    }
 }, {
     timestamps: true,
 })

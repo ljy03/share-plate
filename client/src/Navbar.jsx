@@ -15,7 +15,7 @@ const Navbar = () => {
             localStorage.setItem("token", idToken);
             console.log(data.user);
             setUser(data.user);
-            await axios.post(backendUrl, {
+            await axios.post(`${backendUrl}/user/create`, {
                 name: data.user.displayName,
                 email: data.user.email,
                 photo: data.user.photoURL,
