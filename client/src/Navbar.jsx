@@ -68,6 +68,9 @@ const Navbar = () => {
                         <li onClick={navigateToInventory}>Inventory</li>
                         <li>Add Item</li>
                         <li>Chat</li>
+                        <li onClick={() => {
+                            navigate("/Marketplace");
+                        }}>MarketPlace</li>
                     </ul>
                 )}
             </ul>

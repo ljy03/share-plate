@@ -6,6 +6,7 @@ import Inventory from './pages/Inventory';
 import Market from './pages/Market';
 import Navbar from './Navbar';
 import FoodAboutToExpirePage from './pages/ListOfFoodAboutToExpire';
+import ChatScreeen from './pages/components/Chat';
 
 export const MyContextProvider = createContext();
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/expire' element={user ? <FoodAboutToExpirePage /> : <Home />} />
             <Route path= "/Inventory" element={<Inventory />} />
             <Route path= "/Marketplace" element={<Market />} />
+            <Route path='/Marketplace/chat/:id' element={<ChatScreeen />} />
           </Routes>
         </BrowserRouter>
       </MyContextProvider.Provider>
