@@ -91,6 +91,7 @@ const Home = () => {
                                 defaultValue={""}
                                 onChange={(e) => setType(e.target.value)}
                             >
+                                <option value="Public">Public</option>
                                 <option value="Free">Free</option>
                                 <option value="Trade">Trade</option>
                             </select>
