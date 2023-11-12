@@ -1,7 +1,7 @@
 import React from "react";
 import FoodCard from "./components/FoodCard";
 
-const List = () => {
+const Inventory = () => {
     
     const mockFoodItems = [
         {
@@ -50,4 +50,4 @@ const List = () => {
     );
 }
 
-export default List;
+export default Inventory;

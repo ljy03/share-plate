@@ -1,6 +1,7 @@
 import React from "react";
-import FoodCard from "./components/FoodCard";
+import MarketCard from "./components/MarketCard";
 import Sidebar from "./components/Sidebar"
+import FoodCard from "./components/FoodCard";
 
 const Market = () => {
     
